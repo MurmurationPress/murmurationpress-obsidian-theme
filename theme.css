@@ -1,0 +1,324 @@
+/*
+MurmurationPress Obsidian Theme v0.1.2
+Quiet tools for complex stories.
+
+Design principle:
+Theme owns presentation. Markdown owns meaning. Compiler owns publication.
+*/
+
+/* ---------- Core palette ---------- */
+.theme-light {
+  --mp-paper: #f6f1e7;
+  --mp-paper-soft: #fbf8f0;
+  --mp-ink: #243033;
+  --mp-muted: #64706d;
+  --mp-teal: #4f7f7a;
+  --mp-teal-soft: #dceae6;
+  --mp-slate: #526173;
+  --mp-amber: #b98645;
+  --mp-red: #9b514e;
+  --mp-border: #d6ccb9;
+
+  --background-primary: var(--mp-paper-soft);
+  --background-secondary: var(--mp-paper);
+  --background-secondary-alt: #efe6d6;
+  --background-modifier-border: var(--mp-border);
+  --background-modifier-hover: rgba(79, 127, 122, 0.10);
+  --background-modifier-active-hover: rgba(79, 127, 122, 0.16);
+
+  --text-normal: var(--mp-ink);
+  --text-muted: var(--mp-muted);
+  --text-faint: #8b867c;
+  --text-accent: var(--mp-teal);
+  --text-accent-hover: #365f5c;
+  --interactive-accent: var(--mp-teal);
+  --interactive-accent-hover: #416f6a;
+
+  --titlebar-background: var(--mp-paper);
+  --titlebar-background-focused: var(--mp-paper-soft);
+}
+
+.theme-dark {
+  --mp-paper: #202929;
+  --mp-paper-soft: #172020;
+  --mp-ink: #e7e0d2;
+  --mp-muted: #aeb7b1;
+  --mp-teal: #7fb6ad;
+  --mp-teal-soft: #263b39;
+  --mp-slate: #8b9bb0;
+  --mp-amber: #d3a166;
+  --mp-red: #c47b76;
+  --mp-border: #3a4543;
+
+  --background-primary: var(--mp-paper-soft);
+  --background-secondary: var(--mp-paper);
+  --background-secondary-alt: #243030;
+  --background-modifier-border: var(--mp-border);
+  --background-modifier-hover: rgba(127, 182, 173, 0.10);
+  --background-modifier-active-hover: rgba(127, 182, 173, 0.16);
+
+  --text-normal: var(--mp-ink);
+  --text-muted: var(--mp-muted);
+  --text-faint: #7f8a86;
+  --text-accent: var(--mp-teal);
+  --text-accent-hover: #a2d1ca;
+  --interactive-accent: var(--mp-teal);
+  --interactive-accent-hover: #9acbc3;
+
+  --titlebar-background: var(--mp-paper-soft);
+  --titlebar-background-focused: var(--mp-paper);
+}
+
+body {
+  --font-text-theme: "Literata", "Charter", "Georgia", serif;
+  --font-interface-theme: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-monospace-theme: "JetBrains Mono", "Fira Code", "SFMono-Regular", Consolas, monospace;
+
+  --radius-s: 5px;
+  --radius-m: 8px;
+  --radius-l: 12px;
+
+  --h1-color: var(--text-normal);
+  --h2-color: var(--text-normal);
+  --h3-color: var(--mp-teal);
+  --h4-color: var(--mp-slate);
+  --link-color: var(--mp-teal);
+  --link-color-hover: var(--text-accent-hover);
+  --link-decoration: none;
+  --link-decoration-hover: underline;
+}
+
+/* ---------- Editor / reading surface ---------- */
+.markdown-source-view.mod-cm6 .cm-content,
+.markdown-preview-view {
+  line-height: 1.62;
+}
+
+.markdown-preview-view,
+.markdown-source-view.mod-cm6 .cm-scroller {
+  font-variant-ligatures: common-ligatures;
+}
+
+.markdown-preview-view h1,
+.markdown-preview-view h2,
+.markdown-preview-view h3,
+.markdown-source-view.mod-cm6 .HyperMD-header {
+  letter-spacing: -0.015em;
+}
+
+.markdown-preview-view h1 {
+  border-bottom: 1px solid var(--background-modifier-border);
+  padding-bottom: 0.25em;
+}
+
+/* ---------- Workspace polish ---------- */
+.workspace-tab-header.is-active {
+  color: var(--text-normal);
+}
+
+.workspace-tab-header.is-active::before,
+.workspace-tab-header.is-active::after {
+  box-shadow: none;
+}
+
+.nav-folder-title,
+.nav-file-title {
+  border-radius: var(--radius-s);
+}
+
+.nav-file-title.is-active {
+  background-color: rgba(79, 127, 122, 0.16);
+  color: var(--text-normal);
+}
+
+/* ---------- Callouts: Murmuration story/system vocabulary ---------- */
+.callout {
+  border-radius: var(--radius-m);
+  border: 1px solid rgba(var(--callout-color), 0.22);
+  border-left-width: 4px;
+  box-shadow: none;
+}
+
+.callout-title {
+  font-family: var(--font-interface-theme);
+  letter-spacing: 0.02em;
+}
+
+/* PRIME: cold procedural machine log */
+.callout[data-callout="prime-log"],
+.callout[data-callout="prime"] {
+  --callout-color: 79, 127, 122;
+  --callout-icon: lucide-cpu;
+  background: rgba(79, 127, 122, 0.08);
+}
+
+.callout[data-callout="prime-log"] .callout-title-inner,
+.callout[data-callout="prime"] .callout-title-inner {
+  text-transform: uppercase;
+}
+
+.callout[data-callout="prime-log"] .callout-content,
+.callout[data-callout="prime"] .callout-content {
+  font-family: var(--font-monospace-theme);
+  font-size: 0.92em;
+}
+
+/* JANUS: institutional/situation-room analysis */
+.callout[data-callout="janus-log"],
+.callout[data-callout="janus"] {
+  --callout-color: 82, 97, 115;
+  --callout-icon: lucide-network;
+  background: rgba(82, 97, 115, 0.09);
+}
+
+.callout[data-callout="janus-log"] table,
+.callout[data-callout="janus"] table {
+  font-size: 0.92em;
+}
+
+/* Divergent / Skip: warmer, emergent, less institutional */
+.callout[data-callout="divergent"],
+.callout[data-callout="skip"] {
+  --callout-color: 185, 134, 69;
+  --callout-icon: lucide-sparkles;
+  background: rgba(185, 134, 69, 0.10);
+}
+
+
+/* State: soft chapter-opening highlight, intended for top-of-chapter status/context */
+.callout[data-callout="state"] {
+  --callout-color: 79, 127, 122;
+  --callout-icon: lucide-book-open-check;
+  background: linear-gradient(90deg, rgba(79, 127, 122, 0.12), rgba(79, 127, 122, 0.045));
+  border-left-width: 3px;
+}
+
+.callout[data-callout="state"] .callout-title {
+  color: var(--text-muted);
+}
+
+.callout[data-callout="state"] .callout-title-inner {
+  text-transform: uppercase;
+  font-size: 0.82em;
+  letter-spacing: 0.08em;
+}
+
+.callout[data-callout="state"] .callout-content {
+  font-family: var(--font-interface-theme);
+  font-size: 0.94em;
+  color: var(--text-muted);
+}
+
+/* Annotation: human manuscript note; soft emphasis, close to State rather than editorial tooling */
+.callout[data-callout="annotation"],
+.callout[data-callout="annotate"] {
+  --callout-color: 79, 127, 122;
+  --callout-icon: lucide-message-square-text;
+  background: linear-gradient(90deg, rgba(79, 127, 122, 0.105), rgba(79, 127, 122, 0.038));
+  border-left-width: 3px;
+}
+
+.callout[data-callout="annotation"] .callout-title,
+.callout[data-callout="annotate"] .callout-title {
+  color: var(--text-muted);
+}
+
+.callout[data-callout="annotation"] .callout-title-inner,
+.callout[data-callout="annotate"] .callout-title-inner {
+  text-transform: uppercase;
+  font-size: 0.82em;
+  letter-spacing: 0.08em;
+}
+
+.callout[data-callout="annotation"] .callout-content,
+.callout[data-callout="annotate"] .callout-content {
+  font-family: var(--font-interface-theme);
+  font-size: 0.94em;
+  color: var(--text-muted);
+}
+
+/* Attention / constraint notes */
+.callout[data-callout="constraint"] {
+  --callout-color: 155, 81, 78;
+  --callout-icon: lucide-route;
+  background: rgba(155, 81, 78, 0.08);
+}
+
+/* ---------- Code, logs, YAML-ish blocks ---------- */
+.markdown-preview-view code,
+.cm-inline-code {
+  border-radius: 4px;
+  padding: 0.1em 0.28em;
+}
+
+.markdown-preview-view pre,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+  font-size: 0.92em;
+}
+
+.markdown-preview-view pre {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+}
+
+/* ---------- Tables: useful for JANUS triples ---------- */
+.markdown-preview-view table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+}
+
+.markdown-preview-view th {
+  font-family: var(--font-interface-theme);
+  font-size: 0.86em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background: rgba(79, 127, 122, 0.10);
+}
+
+.markdown-preview-view td,
+.markdown-preview-view th {
+  border-color: var(--background-modifier-border);
+}
+
+/* ---------- Murmuration Writing Companion hooks ---------- */
+.mwc-panel,
+.murmuration-writing-companion,
+.murmuration-companion {
+  background: var(--background-secondary);
+  border-left: 1px solid var(--background-modifier-border);
+}
+
+.mwc-chapter-context,
+.murmuration-chapter-context {
+  font-family: var(--font-interface-theme);
+  font-size: 0.9em;
+  color: var(--text-muted);
+}
+
+.mwc-chapter-context a,
+.murmuration-chapter-context a {
+  color: var(--text-accent);
+  text-decoration: none;
+}
+
+.mwc-chapter-context a:hover,
+.murmuration-chapter-context a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Optional manuscript niceties ---------- */
+.markdown-preview-view blockquote {
+  border-left-color: var(--mp-teal);
+  color: var(--text-normal);
+}
+
+.markdown-preview-view hr {
+  border-color: var(--background-modifier-border);
+  margin: 2em 0;
+}
+
+/* Keep PDFs/exports governed by the compiler, not this app theme. */
